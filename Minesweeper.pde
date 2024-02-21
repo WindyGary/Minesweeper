@@ -12,6 +12,7 @@ void setup ()
     Interactive.make( this );
     buttons = new MSButton[NUM_ROWS][NUM_COLS];  //this initalizes the button empty apartment building
     mines = new ArrayList<MSButton>();
+    
     //your code to initialize buttons goes here
     
     for (int ix = 0; ix < NUM_ROWS; ix++){
@@ -24,7 +25,14 @@ void setup ()
 }
 public void setMines()
 {
-    //your code
+    int row = (int)(Math.random()*NUM_ROWS);
+    int col = (int)(Math.random()*NUM_COLS);
+    
+    if (!mines.contains(buttons[row][col])){
+      mines.add(buttons[row][col]);
+      System.out.println(row);
+      System.out.println(col);
+    }
 }
 
 public void draw ()
@@ -87,8 +95,8 @@ public class MSButton
     {    
         if (flagged)
             fill(0);
-        // else if( clicked && mines.contains(this) ) 
-        //     fill(255,0,0);
+         else if( clicked && mines.contains(this) ) 
+             fill(255,0,0);
         else if(clicked)
             fill( 200 );
         else 
