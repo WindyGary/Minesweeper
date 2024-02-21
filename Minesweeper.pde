@@ -112,7 +112,10 @@ public class MSButton
       }
     }
     else if (mines.contains(this)){
-      System.out.println("this is losing message");
+      System.out.println("this is losing message");    // fix this
+    }
+    else if (countMines() > 0){              // continue working on 
+      setLabel = countMines();
     }
     
   }
