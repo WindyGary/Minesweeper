@@ -102,7 +102,13 @@ public class MSButton
   public void mousePressed () 
   {
     clicked = true;
-    //your code here
+    if(mouseButton == RIGHT){
+      if (flagged){
+      flagged = false;
+      } else {
+      flagged = true;
+      }
+    }
   }
   public void draw () 
   {    
