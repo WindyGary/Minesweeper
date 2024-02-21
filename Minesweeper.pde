@@ -104,17 +104,23 @@ public class MSButton
     clicked = true;
     if(mouseButton == RIGHT){
       if (flagged){
+        clicked = false;
       flagged = false;
-      } else {
+      } 
+      else {
       flagged = true;
       }
     }
+    else if (mines.contains(this)){
+      System.out.println("this is losing message");
+    }
+    
   }
   public void draw () 
   {    
     if (flagged)
       fill(0);
-    else if ( clicked && mines.contains(this) ) 
+    else if ( clicked && mines.contains(this)) 
       fill(255, 0, 0);
     else if (clicked)
       fill( 200 );
