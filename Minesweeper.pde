@@ -17,7 +17,7 @@ void setup ()
     
     for (int ix = 0; ix < NUM_ROWS; ix++){
         for (int iy = 0; iy < NUM_COLS; iy++){
-          buttons[0][iy] = new MSButton(ix,iy);
+          buttons[ix][iy] = new MSButton(ix,iy);
         }
     }
     
