@@ -3,6 +3,8 @@ private static final int NUM_ROWS = 5;
 private static final int NUM_COLS = 5;
 private MSButton[][] buttons; //2d array of minesweeper buttons
 private ArrayList <MSButton> mines; //ArrayList of just the minesweeper buttons that are mined
+
+// delete the system.println 
 void setup ()
 {   
     size(400, 400);
@@ -56,7 +58,9 @@ public void displayWinningMessage()
 }
 public boolean isValid(int r, int c)
 {
-    //your code here
+  if (r >= 0 && r < NUM_ROWS && c >= 0 && c < NUM_COLS){
+    return true;
+    }
     return false;
 }
 public int countMines(int row, int col)
