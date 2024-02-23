@@ -30,8 +30,6 @@ public void setMines()
 
   if (!mines.contains(buttons[row][col])) {
     mines.add(buttons[row][col]);
-    System.out.println(row);
-    System.out.println(col);
   }
 }
 
@@ -113,7 +111,7 @@ public class MSButton
       }
     }
     else if (mines.contains(this) &&  !flagged){
-      System.out.println("this is losing message");    // fix this
+      //System.out.println("this is losing message");    // fix this
     }
     else if (countMines(myRow, myCol) > 0){              // continue working on 
      setLabel(countMines(myRow, myCol));
