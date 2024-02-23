@@ -111,12 +111,12 @@ public class MSButton
       flagged = true;
       }
     }
-    else if (mines.contains(this)){
+    else if (mines.contains(this) &&  !flagged){
       System.out.println("this is losing message");    // fix this
     }
-    else if (countMines() > 0){              // continue working on 
-      setLabel = countMines();
-    }
+    //else if (countMines() > 0){              // continue working on 
+    //  setLabel = countMines();
+    //}
     
   }
   public void draw () 
