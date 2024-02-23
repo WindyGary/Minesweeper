@@ -16,14 +16,12 @@ void setup ()
   mines = new ArrayList<MSButton>();
 
   //your code to initialize buttons goes here
-
   for (int ix = 0; ix < NUM_ROWS; ix++) {
     for (int iy = 0; iy < NUM_COLS; iy++) {
       buttons[ix][iy] = new MSButton(ix, iy);
     }
   }
-
-  setMines();
+  setMines();  // placed one mine
 }
 public void setMines()
 {
@@ -68,10 +66,13 @@ public int countMines(int row, int col)
   int numMines = 0;
   for (int j = row-1; j <= row+1; j++) {
     for (int i = col-1; i <= col+1; i++) {
-      if (j < 0 || j > 4 || i < 0 || i > 4 || j == row && i == col) {
-        continue;
-      }
-      if (mines.contains(buttons[j][i])) {
+      //if (j < 0 || j > 4 || i < 0 || i > 4 || j == row && i == col) {
+      //  continue;
+      //}
+      //if (mines.contains(buttons[j][i])) {
+      //  numMines++;
+      //}
+        if (isValid(j, i) && mines.contains(buttons[j][i])) {
         numMines++;
       }
     }
@@ -114,19 +115,22 @@ public class MSButton
     else if (mines.contains(this) &&  !flagged){
       System.out.println("this is losing message");    // fix this
     }
-    //else if (countMines() > 0){              // continue working on 
-    //  setLabel = countMines();
-    //}
+    else if (countMines(myRow, myCol) > 0){              // continue working on 
+     setLabel(countMines(myRow, myCol));
+    }
+    else{
+      
+    }
     
   }
   public void draw () 
   {    
     if (flagged)
       fill(0);
-    else if ( clicked && mines.contains(this)) 
+    else if (clicked && mines.contains(this))
       fill(255, 0, 0);
     else if (clicked)
-      fill( 200 );
+      fill(200);
     else 
     fill( 100 );
 
