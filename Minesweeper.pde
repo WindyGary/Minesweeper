@@ -126,7 +126,7 @@ public class MSButton
     if(mouseButton == LEFT && !flagged){
     clicked = true;
     }
-    else if(mouseButton == RIGHT){
+    if(mouseButton == RIGHT){
       if (!clicked){
         flagged = !flagged;
       }
