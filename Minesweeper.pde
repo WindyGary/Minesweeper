@@ -2,6 +2,7 @@ import de.bezier.guido.*;
 private static final int NUM_ROWS = 10;
 private static final int NUM_COLS = 10;
 private static final int NUM_MINES = 1 + NUM_ROWS * NUM_COLS / 10;
+private boolean isGameOver = false;
 private MSButton[][] buttons; //2d array of minesweeper buttons
 private ArrayList <MSButton> mines; //ArrayList of just the minesweeper buttons that are mined
 
@@ -42,12 +43,13 @@ public void setMines()
 public void draw ()
 {
   background( 0 );
-  if (isWon())
+  if (isWon()){
     displayWinningMessage();
-  }
-  if (isLose()){
+    }
+  else if (isGameOver){
     displayLosingMessage();
   }
+}
 public boolean isWon()
 {
   //your code here
@@ -110,9 +112,8 @@ public class MSButton
     Interactive.add( this ); // register it with the manager
   }
 
-  // called by manager
   public void mousePressed () 
-  {
+  {  if(!isGameOver){
     if(mouseButton == LEFT && !flagged){
     clicked = true;
     }
@@ -124,8 +125,9 @@ public class MSButton
       flagged = true;
       }
     }
-    if (mines.contains(this) &&  clicked && !flagged){   
-      //fix display losing message
+    if (mines.contains(this) &&  clicked && !flagged){  
+      isGameOver = true;
+      isLose();
     }
     else if (countMines(myRow, myCol) > 0 && clicked){     
      setLabel(countMines(myRow, myCol));
@@ -139,12 +141,12 @@ public class MSButton
         clickNeighboringButtons(myRow + 1, myCol - 1); 
         clickNeighboringButtons(myRow + 1, myCol);     
         clickNeighboringButtons(myRow + 1, myCol + 1);
+      }
     }
-    
   }
   public void clickNeighboringButtons(int r, int c) {
     if (isValid(r, c) && !buttons[r][c].clicked) {
-        buttons[r][c].mousePressed(); // Recursively click the neighboring button
+        buttons[r][c].mousePressed();
     }
   }
   public void draw () 
