@@ -111,7 +111,7 @@ public class MSButton
     }
     if(mouseButton == RIGHT){
       if (flagged){
-        clicked = false;
+      clicked = false;
       flagged = false;
       } 
       else {
@@ -119,10 +119,10 @@ public class MSButton
       flagged = true;
       }
     }
-    else if (mines.contains(this) &&  !flagged){
+    else if (mines.contains(this) &&  !flagged){    // maybe clicked?
       //System.out.println("this is losing message");    // fix this
     }
-    else if (countMines(myRow, myCol) > 0){              // continue working on 
+    else if (countMines(myRow, myCol) > 0 && clicked){              // continue working on 
      setLabel(countMines(myRow, myCol));
     }
     else{
