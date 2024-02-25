@@ -54,13 +54,13 @@ public void displayLosingMessage()
 {
   textAlign(CENTER, CENTER);
   textSize(20);
-  text("YOU LOSE!!!, height/2, width/2);
+  text("YOU LOSE!!!", height/2, width/2);
 }
 public void displayWinningMessage()
 {
   textAlign(CENTER, CENTER);
-  textsize(20);
-  text("YOU WIN!!!, height/2, width/2);
+  textSize(20);
+  text("YOU WIN!!!", height/2, width/2);
 }
 public boolean isValid(int r, int c)
 {
