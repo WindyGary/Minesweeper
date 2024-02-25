@@ -120,18 +120,16 @@ public class MSButton
   public void mousePressed () 
   { 
     if (!isGameLose){
-    if(mouseButton == LEFT && !flagged){
-    clicked = true;
+      if(mouseButton == LEFT && !flagged){
+      clicked = true;
     }
     if(mouseButton == RIGHT){
-      if (flagged){
-      flagged = false;
-      } 
-      else if (!flagged && !clicked){
-      flagged = true;
+      if (!clicked){
+        flagged = !flaggeed;
       }
     }
-    else if (mines.contains(this) &&  clicked && !flagged){  
+    else if (!flagged){
+      if (mines.contains(this) &&  clicked &&){  
       isGameLose = true;
     }
     else if (countMines(myRow, myCol) > 0 && clicked){     
@@ -149,6 +147,7 @@ public class MSButton
       }
     }
   }
+}
   public void clickNeighboringButtons(int r, int c) {
     if (isValid(r, c) && !buttons[r][c].clicked) {
         buttons[r][c].mousePressed();
