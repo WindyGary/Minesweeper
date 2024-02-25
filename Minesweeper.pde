@@ -59,16 +59,14 @@ public boolean isWon()
 }
 public void displayLosingMessage()
 {
-  textAlign(CENTER, CENTER);
   textSize(20);
-  text("YOU LOSE!!!", height/2, width/2);
+  text("YOU LOSE!!!", width/2, height/2);
   textSize(10);
 }
 public void displayWinningMessage()
 {
-  textAlign(CENTER, CENTER);
   textSize(20);
-  text("YOU WIN!!!", height/2, width/2);
+  text("YOU WIN!!!", width/2, height/2);
   textSize(10);
 }
 public boolean isValid(int r, int c)
