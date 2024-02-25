@@ -52,8 +52,14 @@ public void draw ()
 }
 public boolean isWon()
 {
-  //your code here
-  return false;
+  for (int ix = 0; ix < NUM_ROWS; ix++) {
+    for (int iy = 0; iy < NUM_COLS; iy++){
+      if (!buttons[ix][iy].clicked && !mines.contains(buttons[ix][iy])){
+        return false;
+      }
+    }
+  }
+  return true;
 }
 public void displayLosingMessage()
 {
