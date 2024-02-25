@@ -106,7 +106,7 @@ public class MSButton
   // called by manager
   public void mousePressed () 
   {
-    if(mouseButton == LEFT){
+    if(mouseButton == LEFT && !flagged){
     clicked = true;
     }
     else if(mouseButton == RIGHT){
@@ -120,7 +120,7 @@ public class MSButton
     else if (mines.contains(this) &&  clicked && !flagged){    // maybe clicked?
       //System.out.println("this is losing message");    // fix this
     }
-    else if (countMines(myRow, myCol) > 0 && clicked && !flagged){              // continue working on 
+    else if (countMines(myRow, myCol) > 0 && clicked){              // continue working on 
      setLabel(countMines(myRow, myCol));
     }
     else{
