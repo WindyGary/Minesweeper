@@ -129,7 +129,7 @@ public class MSButton
       }
     }
     else if (!flagged){
-      if (mines.contains(this) &&  clicked &&){  
+      if (mines.contains(this) &&  clicked){  
       isGameLose = true;
     }
     else if (countMines(myRow, myCol) > 0 && clicked){     
