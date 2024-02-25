@@ -133,14 +133,14 @@ public class MSButton
      setLabel(countMines(myRow, myCol));
     }
     else{
-        clickNeighboringButtons(myRow - 1, myCol - 1); 
+        /*clickNeighboringButtons(myRow - 1, myCol - 1); 
         clickNeighboringButtons(myRow - 1, myCol);     
         clickNeighboringButtons(myRow - 1, myCol + 1); 
         clickNeighboringButtons(myRow, myCol - 1);     
         clickNeighboringButtons(myRow, myCol + 1);     
         clickNeighboringButtons(myRow + 1, myCol - 1); 
         clickNeighboringButtons(myRow + 1, myCol);     
-        clickNeighboringButtons(myRow + 1, myCol + 1);
+        clickNeighboringButtons(myRow + 1, myCol + 1);*/
     }
     
   }
