@@ -124,9 +124,22 @@ public class MSButton
      setLabel(countMines(myRow, myCol));
     }
     else{
+        clickNeighboringButtons(myRow - 1, myCol - 1); 
+        clickNeighboringButtons(myRow - 1, myCol);     
+        clickNeighboringButtons(myRow - 1, myCol + 1); 
+        clickNeighboringButtons(myRow, myCol - 1);     
+        clickNeighboringButtons(myRow, myCol + 1);     
+        clickNeighboringButtons(myRow + 1, myCol - 1); 
+        clickNeighboringButtons(myRow + 1, myCol);     
+        clickNeighboringButtons(myRow + 1, myCol + 1);
     }
     
   }
+  private void clickNeighboringButtons(int r, int c) {
+    if (isValid(r, c) && !buttons[r][c].clicked) {
+        buttons[r][c].mousePressed(); // Recursively click the neighboring button
+    }
+
   public void draw () 
   {    
     if (flagged)
