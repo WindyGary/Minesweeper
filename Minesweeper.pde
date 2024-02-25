@@ -23,7 +23,7 @@ void setup ()
       buttons[ix][iy] = new MSButton(ix, iy);
     }
   }
-  setMines();
+  setMines();  // placed one mine
 }
 public void setMines()
 {
@@ -126,14 +126,13 @@ public class MSButton
     if(mouseButton == LEFT && !flagged){
     clicked = true;
     }
-    if(mouseButton == RIGHT){
+    else if(mouseButton == RIGHT){
       if (!clicked){
         flagged = !flagged;
       }
     }
-    if (mines.contains(this) &&  clicked && !flagged){  
+    else if (mines.contains(this) &&  clicked && !flagged){  
       isGameLose = true;
-      isLose();
     }
     else if (countMines(myRow, myCol) > 0 && clicked){     
      setLabel(countMines(myRow, myCol));
