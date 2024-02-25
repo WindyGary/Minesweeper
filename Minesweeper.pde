@@ -122,7 +122,7 @@ public class MSButton
       }
     }
     if (mines.contains(this) &&  clicked && !flagged){    // maybe clicked?
-      displayLosingMessage()
+      displayLosingMessage();
     }
     else if (countMines(myRow, myCol) > 0 && clicked){              // continue working on 
      setLabel(countMines(myRow, myCol));
