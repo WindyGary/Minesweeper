@@ -116,8 +116,11 @@ public class MSButton
     clicked = true;
     }
     if(mouseButton == RIGHT){
-      if (!clicked){
-        flagged = !flagged;
+      if (flagged){
+      flagged = false;
+      } 
+      else if (!flagged && !clicked){
+      flagged = true;
       }
     }
     else if (mines.contains(this) &&  clicked && !flagged){  
