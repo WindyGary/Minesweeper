@@ -113,7 +113,7 @@ public class MSButton
       if (flagged){
       flagged = false;
       } 
-      else {
+      else if (!flagged && !clicked){
       flagged = true;
       }
     }
