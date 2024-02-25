@@ -52,11 +52,15 @@ public boolean isWon()
 }
 public void displayLosingMessage()
 {
-  //your code here
+  textAlign(CENTER, CENTER);
+  textSize(20);
+  text("YOU LOSE!!!, height/2, width/2);
 }
 public void displayWinningMessage()
 {
-  //your code here
+  textAlign(CENTER, CENTER);
+  textsize(20);
+  text("YOU WIN!!!, height/2, width/2);
 }
 public boolean isValid(int r, int c)
 {
@@ -118,7 +122,7 @@ public class MSButton
       }
     }
     if (mines.contains(this) &&  clicked && !flagged){    // maybe clicked?
-      //System.out.println("this is losing message");    // fix this
+      displayLosingMessage()
     }
     else if (countMines(myRow, myCol) > 0 && clicked){              // continue working on 
      setLabel(countMines(myRow, myCol));
@@ -135,11 +139,11 @@ public class MSButton
     }
     
   }
-  private void clickNeighboringButtons(int r, int c) {
+  public void clickNeighboringButtons(int r, int c) {
     if (isValid(r, c) && !buttons[r][c].clicked) {
         buttons[r][c].mousePressed(); // Recursively click the neighboring button
     }
-
+  }
   public void draw () 
   {    
     if (flagged)
