@@ -121,7 +121,7 @@ public class MSButton
   }
 
   public void mousePressed () 
-  {  if(!isGameOver){
+  { 
     if(mouseButton == LEFT && !flagged){
     clicked = true;
     }
@@ -146,7 +146,7 @@ public class MSButton
         clickNeighboringButtons(myRow + 1, myCol - 1); 
         clickNeighboringButtons(myRow + 1, myCol);     
         clickNeighboringButtons(myRow + 1, myCol + 1);
-      }
+
     }
   }
   public void clickNeighboringButtons(int r, int c) {
