@@ -123,7 +123,6 @@ public class MSButton
      setLabel(countMines(myRow, myCol));
     }
     else{
-      mousePressed();
     }
     
   }
