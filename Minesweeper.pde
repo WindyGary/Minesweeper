@@ -115,11 +115,10 @@ public class MSButton
       flagged = false;
       } 
       else {
-      clicked = false;
       flagged = true;
       }
     }
-    else if (mines.contains(this) &&  !flagged){    // maybe clicked?
+    else if (mines.contains(this) &&  clicked){    // maybe clicked?
       //System.out.println("this is losing message");    // fix this
     }
     else if (countMines(myRow, myCol) > 0 && clicked){              // continue working on 
