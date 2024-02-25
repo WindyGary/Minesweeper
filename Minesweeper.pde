@@ -2,7 +2,7 @@ import de.bezier.guido.*;
 private static final int NUM_ROWS = 10;
 private static final int NUM_COLS = 10;
 private static final int NUM_MINES = 1 + NUM_ROWS * NUM_COLS / 10;
-private boolean isGameOver = false;
+private boolean isLose = false; // fix this
 private MSButton[][] buttons; //2d array of minesweeper buttons
 private ArrayList <MSButton> mines; //ArrayList of just the minesweeper buttons that are mined
 
@@ -43,37 +43,28 @@ public void setMines()
 public void draw ()
 {
   background( 0 );
-  if (isWon()){
+  if (isWon() == true)
     displayWinningMessage();
-    }
-  else if (isGameOver){
+  if(isLose){
     displayLosingMessage();
   }
 }
 public boolean isWon()
 {
-  for (int ix = 0; ix < NUM_ROWS; ix++) {
-    for (int iy = 0; iy < NUM_COLS; iy++){
-      if (!buttons[ix][iy].clicked && !mines.contains(buttons[ix][iy])){
-        return false;
-      }
-    }
-  }
-  return true;
+  //your code here
+  return false;
 }
 public void displayLosingMessage()
 {
   textAlign(CENTER, CENTER);
   textSize(20);
   text("YOU LOSE!!!", height/2, width/2);
-  textSize(10);
 }
 public void displayWinningMessage()
 {
   textAlign(CENTER, CENTER);
   textSize(20);
   text("YOU WIN!!!", height/2, width/2);
-  textSize(10);
 }
 public boolean isValid(int r, int c)
 {
@@ -120,21 +111,24 @@ public class MSButton
     Interactive.add( this ); // register it with the manager
   }
 
+  // called by manager
   public void mousePressed () 
-  { 
+  {
     if(mouseButton == LEFT && !flagged){
     clicked = true;
     }
     if(mouseButton == RIGHT){
-      if (!clicked){
-        flagged = !flagged;
+      if (flagged){
+      flagged = false;
+      } 
+      else if (!flagged && !clicked){
+      flagged = true;
       }
     }
-    if (mines.contains(this) &&  clicked && !flagged){  
-      isGameOver = true;
-      isLose();
+    if (mines.contains(this) &&  clicked && !flagged){    // maybe clicked?
+      isLose == true;
     }
-    else if (countMines(myRow, myCol) > 0 && clicked){     
+    else if (countMines(myRow, myCol) > 0 && clicked){              // continue working on 
      setLabel(countMines(myRow, myCol));
     }
     else{
@@ -146,12 +140,12 @@ public class MSButton
         clickNeighboringButtons(myRow + 1, myCol - 1); 
         clickNeighboringButtons(myRow + 1, myCol);     
         clickNeighboringButtons(myRow + 1, myCol + 1);
-
     }
+    
   }
   public void clickNeighboringButtons(int r, int c) {
     if (isValid(r, c) && !buttons[r][c].clicked) {
-        buttons[r][c].mousePressed();
+        buttons[r][c].mousePressed(); // Recursively click the neighboring button
     }
   }
   public void draw () 
@@ -167,7 +161,6 @@ public class MSButton
 
     rect(x, y, width, height);
     fill(0);
-    textSize(10);
     text(myLabel, x+width/2, y+height/2);
   }
   public void setLabel(String newLabel)
