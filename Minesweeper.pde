@@ -27,7 +27,6 @@ void setup ()
 }
 public void setMines()
 {
-
   for (int i = 0; i < NUM_MINES; i++){
       int row = (int)(Math.random()*NUM_ROWS);
       int col = (int)(Math.random()*NUM_COLS);
@@ -38,6 +37,15 @@ public void setMines()
       i--;
     }
   }
+}
+void draw(){
+  background(0);
+    if (isWon()){
+    displayWinningMessage();
+    }
+    else if (isGameLose){
+    displayLosingMessage();
+    }
 }
 public boolean isWon()
 {
@@ -148,7 +156,6 @@ public class MSButton
   }
   public void draw () 
   { 
-    background( 0 );
     if (flagged)
       fill(0);
     else if (clicked && mines.contains(this))
@@ -162,13 +169,6 @@ public class MSButton
     fill(0);
     textSize(10);
     text(myLabel, x+width/2, y+height/2);
-
-    if (isWon()){
-    displayWinningMessage();
-    }
-    else if (isGameLose){
-    displayLosingMessage();
-    }
   }
   public void setLabel(String newLabel)
   {
