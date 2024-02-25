@@ -23,7 +23,7 @@ void setup ()
       buttons[ix][iy] = new MSButton(ix, iy);
     }
   }
-  setMines();  // placed one mine
+  setMines();
 }
 public void setMines()
 {
@@ -45,15 +45,21 @@ public void draw ()
   background( 0 );
   if (isWon()){
     displayWinningMessage();
-  }
-  if(isGameLose){
+    }
+  else if (isGameLose){
     displayLosingMessage();
   }
 }
 public boolean isWon()
 {
-  //your code here
-  return false;
+  for (int ix = 0; ix < NUM_ROWS; ix++) {
+    for (int iy = 0; iy < NUM_COLS; iy++){
+      if (!buttons[ix][iy].clicked && !mines.contains(buttons[ix][iy])){
+        return false;
+      }
+    }
+  }
+  return true;
 }
 public void displayLosingMessage()
 {
@@ -114,39 +120,39 @@ public class MSButton
     Interactive.add( this ); // register it with the manager
   }
 
-  // called by manager
   public void mousePressed () 
-  {
+  { 
+    if (!isGameLose){
     if(mouseButton == LEFT && !flagged){
     clicked = true;
     }
-    else if(mouseButton == RIGHT){
+    if(mouseButton == RIGHT){
       if (!clicked){
         flagged = !flagged;
       }
     }
-    if (mines.contains(this) &&  clicked && !flagged){    // maybe clicked?
-      isGameLose == true;
+    if (mines.contains(this) &&  clicked && !flagged){  
+      isGameLose = true;
       isLose();
     }
-    else if (countMines(myRow, myCol) > 0 && clicked){       
+    else if (countMines(myRow, myCol) > 0 && clicked){     
      setLabel(countMines(myRow, myCol));
     }
     else{
-        /*clickNeighboringButtons(myRow - 1, myCol - 1); 
+        clickNeighboringButtons(myRow - 1, myCol - 1); 
         clickNeighboringButtons(myRow - 1, myCol);     
         clickNeighboringButtons(myRow - 1, myCol + 1); 
         clickNeighboringButtons(myRow, myCol - 1);     
         clickNeighboringButtons(myRow, myCol + 1);     
         clickNeighboringButtons(myRow + 1, myCol - 1); 
         clickNeighboringButtons(myRow + 1, myCol);     
-        clickNeighboringButtons(myRow + 1, myCol + 1);*/
+        clickNeighboringButtons(myRow + 1, myCol + 1);
+      }
     }
-    
   }
   public void clickNeighboringButtons(int r, int c) {
     if (isValid(r, c) && !buttons[r][c].clicked) {
-        buttons[r][c].mousePressed(); 
+        buttons[r][c].mousePressed();
     }
   }
   public void draw () 
