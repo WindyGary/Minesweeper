@@ -66,12 +66,14 @@ public void displayLosingMessage()
   textAlign(CENTER, CENTER);
   textSize(20);
   text("YOU LOSE!!!", height/2, width/2);
+  textSize(10);
 }
 public void displayWinningMessage()
 {
   textAlign(CENTER, CENTER);
   textSize(20);
   text("YOU WIN!!!", height/2, width/2);
+  textSize(10);
 }
 public boolean isValid(int r, int c)
 {
@@ -168,6 +170,7 @@ public class MSButton
 
     rect(x, y, width, height);
     fill(0);
+    textSize(10);
     text(myLabel, x+width/2, y+height/2);
   }
   public void setLabel(String newLabel)
