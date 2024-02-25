@@ -106,13 +106,16 @@ public class MSButton
   // called by manager
   public void mousePressed () 
   {
+    if(mouseButton == LEFT){
     clicked = true;
+    }
     if(mouseButton == RIGHT){
       if (flagged){
         clicked = false;
       flagged = false;
       } 
       else {
+      clicked = false;
       flagged = true;
       }
     }
