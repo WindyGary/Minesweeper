@@ -137,6 +137,7 @@ public class MSButton
           isGameLose = true;
         } else if (countMines(myRow, myCol) > 0 && clicked) {
           setLabel(countMines(myRow, myCol));
+          recursionHappened = false;
         } else {
           clickNeighboringButtons(myRow - 1, myCol - 1);
           clickNeighboringButtons(myRow - 1, myCol);
