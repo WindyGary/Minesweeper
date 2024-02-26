@@ -56,13 +56,13 @@ public boolean isWon()
 public void displayLosingMessage()
 {
   textSize(40);
-  fill(100,255,200);
+  fill(100, 255, 200);
   text("YOU LOSE!!!", width/2, height/2);
 }
 public void displayWinningMessage()
 {
   textSize(40);
-  fill(100,255,200);
+  fill(100, 255, 200);
   text("YOU WIN!!!", width/2, height/2);
 }
 public boolean isValid(int r, int c)
@@ -89,6 +89,14 @@ public int countMines(int row, int col)
     }
   }
   return numMines;
+}
+public void revealMines() {
+  for (int ix = 0; ix < NUM_ROWS; ix++) {
+    for (int iy = 0; iy < NUM_COLS; iy++) {
+      if (mines.contains(buttons[ix][iy])) {
+      }
+    }
+  }
 }
 public class MSButton
 {
