@@ -121,7 +121,7 @@ public class MSButton
   public void mousePressed ()
   {
     if (!isGameLose) {
-      if (mouseButton == LEFT && (!flagged || recursionHappened)) {
+      if (mouseButton == LEFT && !flagged && recursionHappened) {
         clicked = true;
         flagged = false;
         recursionHappened = false;
