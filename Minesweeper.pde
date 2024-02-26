@@ -55,15 +55,15 @@ public boolean isWon()
 }
 public void displayLosingMessage()
 {
-  textSize(20);
+  textSize(40);
+  fill(100,255,200);
   text("YOU LOSE!!!", width/2, height/2);
-  textSize(10);
 }
 public void displayWinningMessage()
 {
-  textSize(20);
+  textSize(40);
+  fill(100,255,200);
   text("YOU WIN!!!", width/2, height/2);
-  textSize(10);
 }
 public boolean isValid(int r, int c)
 {
@@ -157,19 +157,18 @@ public class MSButton
     else if (clicked)
       fill(200);
     else
-    fill( 100 );
+      fill( 100 );
 
     rect(x, y, width, height);
     fill(0);
     textSize(10);
     text(myLabel, x+width/2, y+height/2);
-    
+
     if (isWon()) {
-    displayWinningMessage();
+      displayWinningMessage();
     } else if (isGameLose) {
-    displayLosingMessage();
+      displayLosingMessage();
     }
-    
   }
   public void setLabel(String newLabel)
   {
