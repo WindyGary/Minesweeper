@@ -3,6 +3,7 @@ private static final int NUM_ROWS = 10;
 private static final int NUM_COLS = 10;
 private static final int NUM_MINES = 1 + NUM_ROWS * NUM_COLS / 10;
 private boolean isGameLose = false;
+private boolean recursionHappened = false;
 private MSButton[][] buttons; //2d array of minesweeper buttons
 private ArrayList <MSButton> mines; //ArrayList of just the minesweeper buttons that are mined
 
@@ -40,11 +41,6 @@ public void setMines()
 }
 void draw() {
   background(0);
-  if (isWon()) {
-    displayWinningMessage();
-  } else if (isGameLose) {
-    displayLosingMessage();
-  }
 }
 public boolean isWon()
 {
@@ -117,8 +113,10 @@ public class MSButton
   public void mousePressed ()
   {
     if (!isGameLose) {
-      if (mouseButton == LEFT && !flagged) {
+      if (mouseButton == LEFT && (!flagged || recursionHappened)) {
         clicked = true;
+        flagged = false;
+        recursionHappened = false;
       }
       if (mouseButton == RIGHT) {
         if (flagged) {
@@ -147,6 +145,7 @@ public class MSButton
   public void clickNeighboringButtons(int r, int c) {
     if (isValid(r, c) && !buttons[r][c].clicked) {
       buttons[r][c].mousePressed();
+      recursionHappened = true;
     }
   }
   public void draw ()
@@ -164,6 +163,13 @@ public class MSButton
     fill(0);
     textSize(10);
     text(myLabel, x+width/2, y+height/2);
+    
+    if (isWon()) {
+    displayWinningMessage();
+    } else if (isGameLose) {
+    displayLosingMessage();
+    }
+    
   }
   public void setLabel(String newLabel)
   {
