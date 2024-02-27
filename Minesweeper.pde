@@ -3,7 +3,8 @@ private static final int NUM_ROWS = 10;
 private static final int NUM_COLS = 10;
 private static final int NUM_MINES = 1 + NUM_ROWS * NUM_COLS / 10;
 private boolean isGameLose = false;
-private boolean recursionHappened = false;
+private boolean recursing = false;
+private int numClicked = 0;
 private MSButton[][] buttons; //2d array of minesweeper buttons
 private ArrayList <MSButton> mines; //ArrayList of just the minesweeper buttons that are mined
 
@@ -121,10 +122,11 @@ public class MSButton
   public void mousePressed ()
   {
     if (!isGameLose) {
-      if (mouseButton == LEFT && !flagged || mouseButton == LEFT && recursionHappened)) {
-        clicked = true;
+      if (mouseButton == LEFT && !flagged || recursing) {
         flagged = false;
-        recursionHappened = false;
+        clicked = true;
+        recursing = false;
+        numClicked++;
       }
       if (mouseButton == RIGHT) {
         if (flagged) {
@@ -135,10 +137,11 @@ public class MSButton
       } else if (!flagged) {
         if (mines.contains(this) &&  clicked) {
           isGameLose = true;
-        } else if (countMines(myRow, myCol) > 0 && clicked) {
+        } 
+        else if (countMines(myRow, myCol) > 0 && clicked) {
           setLabel(countMines(myRow, myCol));
-          recursionHappened = false;
-        } else {
+        } 
+        else if (countMines(myRow, myCol) == 0){
           clickNeighboringButtons(myRow - 1, myCol - 1);
           clickNeighboringButtons(myRow - 1, myCol);
           clickNeighboringButtons(myRow - 1, myCol + 1);
@@ -153,8 +156,8 @@ public class MSButton
   }
   public void clickNeighboringButtons(int r, int c) {
     if (isValid(r, c) && !buttons[r][c].clicked) {
+      recursing = true;
       buttons[r][c].mousePressed();
-      recursionHappened = true;
     }
   }
   public void draw ()
