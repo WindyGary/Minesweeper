@@ -4,7 +4,7 @@ private static final int NUM_COLS = 10;
 private static final int NUM_MINES = 1 + NUM_ROWS * NUM_COLS / 10;
 private boolean isGameLose = false;
 private boolean recursing = false;
-private int numClicked = 0;
+private boolean firstClick = true;
 private MSButton[][] buttons; //2d array of minesweeper buttons
 private ArrayList <MSButton> mines; //ArrayList of just the minesweeper buttons that are mined
 
@@ -35,6 +35,7 @@ public void setMines()
 
     if (!mines.contains(buttons[row][col])) {
       mines.add(buttons[row][col]);
+      System.out.println(row + "," + col);
     } else {
       i--;
     }
@@ -56,13 +57,16 @@ public boolean isWon()
 }
 public void displayLosingMessage()
 {
-  textSize(40);
+  textSize(30);
   fill(100, 255, 200);
   text("YOU LOSE!!!", width/2, height/2);
+  if (firstClick){
+  text("YOU ARE VERY UNLUCKY!!!", width/2, height/2+50);
+  }
 }
 public void displayWinningMessage()
 {
-  textSize(40);
+  textSize(30);
   fill(100, 255, 200);
   text("YOU WIN!!!", width/2, height/2);
 }
@@ -126,7 +130,6 @@ public class MSButton
         flagged = false;
         clicked = true;
         recursing = false;
-        numClicked++;
       }
       if (mouseButton == RIGHT) {
         if (flagged) {
@@ -162,14 +165,18 @@ public class MSButton
   }
   public void draw ()
   {
-    if (flagged)
+    if (flagged){
       fill(0);
-    else if (clicked && mines.contains(this))
+    }
+    else if (clicked && mines.contains(this)){
       fill(255, 0, 0);
-    else if (clicked)
+    }
+    else if (clicked){
       fill(200);
-    else
+    }
+    else{
       fill( 100 );
+    }
 
     rect(x, y, width, height);
     fill(0);
