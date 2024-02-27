@@ -35,7 +35,7 @@ public void setMines()
 
     if (!mines.contains(buttons[row][col])) {
       mines.add(buttons[row][col]);
-      System.out.println(row + "," + col);
+      //System.out.println(row + "," + col);
     } else {
       i--;
     }
@@ -122,7 +122,7 @@ public class MSButton
     flagged = clicked = false;
     Interactive.add( this ); // register it with the manager
   }
-
+  
   public void mousePressed ()
   {
     if (!isGameLose) {
@@ -137,7 +137,8 @@ public class MSButton
         } else if (!flagged && !clicked) {
           flagged = true;
         }
-      } else if (!flagged) {
+      } 
+      else if (!flagged) {
         if (mines.contains(this) &&  clicked) {
           isGameLose = true;
         } 
