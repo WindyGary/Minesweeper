@@ -1,10 +1,9 @@
 import de.bezier.guido.*;
-private static final int NUM_ROWS = 20;
-private static final int NUM_COLS = 20;
+private static final int NUM_ROWS = 15;
+private static final int NUM_COLS = 15;
 private static final int NUM_MINES = 1 + NUM_ROWS * NUM_COLS / 10;
 private boolean isGameLose = false;
 private boolean recursing = false;
-private boolean firstClick = true;
 private MSButton[][] buttons; //2d array of minesweeper buttons
 private ArrayList <MSButton> mines; //ArrayList of just the minesweeper buttons that are mined
 void setup ()
@@ -168,6 +167,8 @@ public class MSButton
     
     if (isGameLose && mines.contains(this)){    // reveal the mines
       fill(255, 0, 0);
+    } else if (isWon() && mines.contains(this)){
+      fill(0,0,123);
     }
     rect(x, y, width, height);
     fill(0);
