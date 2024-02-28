@@ -6,8 +6,6 @@ private boolean isGameLose = false;
 private boolean recursing = false;
 private MSButton[][] buttons; //2d array of minesweeper buttons
 private ArrayList <MSButton> mines; //ArrayList of just the minesweeper buttons that are mined
-
-// delete the system.println
 void setup ()
 {
   size(400, 400);
@@ -24,7 +22,7 @@ void setup ()
       buttons[ix][iy] = new MSButton(ix, iy);
     }
   }
-  setMines();  // placed one mine
+  setMines();
 }
 public void setMines()
 {
@@ -34,7 +32,6 @@ public void setMines()
 
     if (!mines.contains(buttons[row][col])) {
       mines.add(buttons[row][col]);
-      System.out.println(row + "," + col);
     } else {
       i--;
     }
@@ -59,8 +56,8 @@ public void displayLosingMessage()
   textSize(30);
   fill(100, 55, 200);
   text("YOU LOSE!!!", width/2, height/2);
-  if (checkIfClicked()){
-  text("YOU ARE VERY UNLUCKY!!!", width/2, height/2+50);
+  if (checkIfClicked()) {
+    text("YOU ARE VERY UNLUCKY!!!", width/2, height/2+50);
   }
 }
 public void displayWinningMessage()
@@ -81,12 +78,6 @@ public int countMines(int row, int col)
   int numMines = 0;
   for (int j = row-1; j <= row+1; j++) {
     for (int i = col-1; i <= col+1; i++) {
-      //if (j < 0 || j > 4 || i < 0 || i > 4 || j == row && i == col) {
-      //  continue;
-      //}
-      //if (mines.contains(buttons[j][i])) {
-      //  numMines++;
-      //}
       if (isValid(j, i) && mines.contains(buttons[j][i])) {
         numMines++;
       }
@@ -94,7 +85,7 @@ public int countMines(int row, int col)
   }
   return numMines;
 }
-public boolean checkIfClicked(){
+public boolean checkIfClicked() {
   for (int ix = 0; ix < NUM_ROWS; ix++) {
     for (int iy = 0; iy < NUM_COLS; iy++) {
       if (buttons[ix][iy].clicked && !mines.contains(buttons[ix][iy])) {
@@ -123,7 +114,7 @@ public class MSButton
     flagged = clicked = false;
     Interactive.add( this ); // register it with the manager
   }
-  
+
   public void mousePressed ()
   {
     if (!isGameLose) {
@@ -138,15 +129,12 @@ public class MSButton
         } else if (!flagged && !clicked) {
           flagged = true;
         }
-      } 
-      else if (!flagged) {
+      } else if (!flagged) {
         if (mines.contains(this) &&  clicked) {
           isGameLose = true;
-        } 
-        else if (countMines(myRow, myCol) > 0 && clicked) {
+        } else if (countMines(myRow, myCol) > 0 && clicked) {
           setLabel(countMines(myRow, myCol));
-        } 
-        else if (countMines(myRow, myCol) == 0){
+        } else if (countMines(myRow, myCol) == 0) {
           clickNeighboringButtons(myRow - 1, myCol - 1);
           clickNeighboringButtons(myRow - 1, myCol);
           clickNeighboringButtons(myRow - 1, myCol + 1);
@@ -167,19 +155,13 @@ public class MSButton
   }
   public void draw ()
   {
-    if (isGameLose && mines.contains(this)){
-      fill(255, 0, 0);
-    }
-    else if (flagged){
+    if (flagged) {
       fill(0);
-    }
-    else if (clicked && mines.contains(this)){
+    } else if (clicked && mines.contains(this) || isGameLose && mines.contains(this)) {
       fill(255, 0, 0);
-    }
-    else if (clicked){
+    } else if (clicked) {
       fill(200);
-    }
-    else{
+    } else {
       fill( 100 );
     }
     rect(x, y, width, height);
