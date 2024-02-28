@@ -4,7 +4,6 @@ private static final int NUM_COLS = 10;
 private static final int NUM_MINES = 1 + NUM_ROWS * NUM_COLS / 10;
 private boolean isGameLose = false;
 private boolean recursing = false;
-private boolean firstClick = true;
 private MSButton[][] buttons; //2d array of minesweeper buttons
 private ArrayList <MSButton> mines; //ArrayList of just the minesweeper buttons that are mined
 
@@ -35,7 +34,7 @@ public void setMines()
 
     if (!mines.contains(buttons[row][col])) {
       mines.add(buttons[row][col]);
-      //System.out.println(row + "," + col);
+      System.out.println(row + "," + col);
     } else {
       i--;
     }
@@ -58,16 +57,16 @@ public boolean isWon()
 public void displayLosingMessage()
 {
   textSize(30);
-  fill(100, 255, 200);
+  fill(100, 55, 200);
   text("YOU LOSE!!!", width/2, height/2);
-  if (firstClick){
+  if (checkIfClicked()){
   text("YOU ARE VERY UNLUCKY!!!", width/2, height/2+50);
   }
 }
 public void displayWinningMessage()
 {
   textSize(30);
-  fill(100, 255, 200);
+  fill(100, 55, 200);
   text("YOU WIN!!!", width/2, height/2);
 }
 public boolean isValid(int r, int c)
@@ -102,6 +101,16 @@ public void revealMines() {
       }
     }
   }
+}
+public boolean checkIfClicked(){
+  for (int ix = 0; ix < NUM_ROWS; ix++) {
+    for (int iy = 0; iy < NUM_COLS; iy++) {
+      if (buttons[ix][iy].clicked && !mines.contains(buttons[ix][iy])) {
+        return false;
+      }
+    }
+  }
+  return true;
 }
 public class MSButton
 {
