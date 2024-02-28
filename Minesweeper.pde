@@ -1,14 +1,15 @@
 import de.bezier.guido.*;
-private static final int NUM_ROWS = 10;
-private static final int NUM_COLS = 10;
+private static final int NUM_ROWS = 20;
+private static final int NUM_COLS = 20;
 private static final int NUM_MINES = 1 + NUM_ROWS * NUM_COLS / 10;
 private boolean isGameLose = false;
 private boolean recursing = false;
+private boolean firstClick = true;
 private MSButton[][] buttons; //2d array of minesweeper buttons
 private ArrayList <MSButton> mines; //ArrayList of just the minesweeper buttons that are mined
 void setup ()
 {
-  size(400, 400);
+  size(600,600);
   textAlign(CENTER, CENTER);
 
   // make the manager
@@ -104,8 +105,8 @@ public class MSButton
 
   public MSButton ( int row, int col )
   {
-    width = 400/NUM_COLS;
-    height = 400/NUM_ROWS;
+    width = 600/NUM_COLS;
+    height = 600/NUM_ROWS;
     myRow = row;
     myCol = col;
     x = myCol*width;
@@ -157,12 +158,16 @@ public class MSButton
   {
     if (flagged) {
       fill(0);
-    } else if (clicked && mines.contains(this) || isGameLose && mines.contains(this)) {
+    } else if (clicked && mines.contains(this)) {
       fill(255, 0, 0);
     } else if (clicked) {
       fill(200);
     } else {
       fill( 100 );
+    }
+    
+    if (isGameLose && mines.contains(this)){    // reveal the mines
+      fill(255, 0, 0);
     }
     rect(x, y, width, height);
     fill(0);
