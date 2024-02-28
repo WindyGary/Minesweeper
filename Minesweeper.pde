@@ -94,14 +94,6 @@ public int countMines(int row, int col)
   }
   return numMines;
 }
-public void revealMines() {
-  for (int ix = 0; ix < NUM_ROWS; ix++) {
-    for (int iy = 0; iy < NUM_COLS; iy++) {
-      if (mines.contains(buttons[ix][iy])) {
-      }
-    }
-  }
-}
 public boolean checkIfClicked(){
   for (int ix = 0; ix < NUM_ROWS; ix++) {
     for (int iy = 0; iy < NUM_COLS; iy++) {
@@ -175,7 +167,10 @@ public class MSButton
   }
   public void draw ()
   {
-    if (flagged){
+    if (isGameLose && mines.contains(this)){
+      fill(255, 0, 0);
+    }
+    else if (flagged){
       fill(0);
     }
     else if (clicked && mines.contains(this)){
@@ -187,7 +182,6 @@ public class MSButton
     else{
       fill( 100 );
     }
-
     rect(x, y, width, height);
     fill(0);
     textSize(10);
